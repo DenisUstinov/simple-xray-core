@@ -77,7 +77,7 @@ cp /usr/local/etc/xray/.keys /usr/local/etc/xray/.keys.old
 ```
 Чтобы восстановить конфигурацию, введите:
 ```sh
-wget -qO- https://raw.githubusercontent.com/ServerTechnologies/simple-xray-core/refs/heads/main/xray-install | bash
+wget -qO- https://raw.githubusercontent.com/DenisUstinov/simple-xray-core/refs/heads/main/xray-install | bash
 mv /usr/local/etc/xray/config.json.old /usr/local/etc/xray/config.json
 mv /usr/local/etc/xray/.keys.old /usr/local/etc/xray/.keys
 systemctl restart xray
