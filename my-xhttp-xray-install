@@ -2,15 +2,24 @@
 echo "Будет установлен Vless с транспортом XHTTP"
 sleep 3
 
-# === НОВОЕ: Настройка постоянного DNS через TCP (use-vc) ===
-echo "Настройка DNS через TCP (обход блокировки UDP/53)..."
+# === УДАЛЯЕМ ВСЕ ЗЕРКАЛА BEGET ИЗ APT — НИКАКИХ ОШИБОК ХЕШЕЙ! ===
+if grep -q "beget" /etc/apt/sources.list; then
+    echo "Обнаружены зеркала Beget — удаляем для стабильности..."
+    cp /etc/apt/sources.list /etc/apt/sources.list.bak.beget
+    sed -i 's|public-mirrors.beget.ru/apt/ru.archive.ubuntu.com|archive.ubuntu.com|g' /etc/apt/sources.list
+    sed -i 's|^deb https://packages.beget.com|# disabled by user: deb https://packages.beget.com|g' /etc/apt/sources.list
+    echo "Зеркала Beget заменены на официальные."
+fi
+
+# === Настройка DNS через TCP (use-vc) — кратко и без лишнего ===
 cat > /etc/resolv.conf <<EOF
 nameserver 8.8.8.8
 nameserver 1.1.1.1
 options use-vc
 EOF
 
-# === Обновление и установка зависимостей ===
+# === ОЧИСТКА КЭША И ОБНОВЛЕНИЕ ===
+apt clean
 apt update
 apt install -y qrencode curl jq
 
