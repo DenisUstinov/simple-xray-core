@@ -87,7 +87,7 @@ systemctl restart xray
 ## Установка с транспортом XHTTP.
 Установка производится слудующей командой. Внимание! Все пользователи будут удалены - их придется подключать заново.
 ```sh
-wget -qO- https://raw.githubusercontent.com/ServerTechnologies/simple-xray-core/refs/heads/main/xhttp-xray-install | bash
+wget -qO- https://raw.githubusercontent.com/DenisUstinov/simple-xray-core/refs/heads/main/xhttp-xray-install | bash
 ```
 Команды для управления пользователями те же самые, что и в предыдущем пункте
 
